@@ -20,15 +20,19 @@
 
 ### 工作日志
 
+#### 2021-11-02
+- 微信小程序创建BLE 模型的 `peripheral` 模型，设置 `service` 和 `characteristics`
+- 使用 `nRF Connect` 连接微信小程序获取 `characteristics`
+
 #### 2021-11-01
-- 使用 nRF Connect 创建 peripheral 服务
-- 微信小程序创建BLE 模型的 central 连接 nRF Connect 服务
+- 使用 `nRF Connect` 创建 `peripheral` 服务
+- 微信小程序创建BLE 模型的 `central` 连接 `nRF Connect` 服务
 - BLE 读写特征值和编码转换
 
 
 #### 2021-10-31
-- 编译 source 代码，烧录到开发板，通过 debug 信息了解 source 流程的状态机模型
-- 验证数模转换和 headset 接口
+- 编译 `source` 代码，烧录到开发板，通过 `debug` 信息了解 `source` 流程的状态机模型
+- 验证数模转换和 `headset` 接口
 - 解决 `如何通过耳机mac创建连接` 问题
 
 ```c
