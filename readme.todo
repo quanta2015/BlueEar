@@ -2,7 +2,7 @@ Schedule:
  ✔ 8670开发板编译环境和调试开发 @done (21-10-30 20:37)
  ✔ 使用 nRF Connect 创建BLE 模型的 peripheral 和服务特征值 @done (21-11-01 20:41)
  ✔ 微信小程序创建BLE 模型的 central 连接 nRF Connect 服务，获取特征值 @done (21-11-01 20:41)
- ☐ 微信小程序创建BLE 模型的 peripheral，创建服务特征值 @due(1day)
+ ✔ 微信小程序创建BLE 模型的 peripheral，创建服务特征值 @due(1day) @done (21-11-02 20:04)
  ☐ 8670开发板 sink 模式连接微信小程序 peripheral 模型，获取特征值 @due(1day)
  ☐ 分析 sink 源代码，理解整个逻辑状态 @due(2day)
  ☐ 将 sink 端的 gatt 模块移植到 source 端 @critical @due(5day)
