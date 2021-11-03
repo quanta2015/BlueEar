@@ -18,7 +18,16 @@
 3. CSR8670芯片的 `source` 模型的数模信号转换
 
 
+### 资料文档
+1. [蓝牙官方文档](https://www.bluetooth.com/specifications/specs/) 
+2. [蓝牙协议](https://software-dl.ti.com/simplelink/esd/simplelink_cc2640r2_sdk/3.20.00.21/exports/docs/blestack/ble_user_guide/html/ble-stack-3.x/overview.html)
+3. [8670入门笔记](https://www.its203.com/article/ylangeia/103308289)
+
 ### 工作日志
+
+
+#### 2021-11-03
+- 阅读GATT协议逻辑
 
 #### 2021-11-02
 - 微信小程序创建BLE 模型的 `peripheral` 模型，设置 `service` 和 `characteristics`
