@@ -4,17 +4,17 @@
 通过手机微信小程序扫码，实现蓝牙耳机 [`sink`模式] 作为话筒，将音频信号传送到蓝牙板卡 [`source` 模式], 再通过音箱播放。
 
 
-### 逻辑流程
+### 逻辑流程 Ver.2
 1. 微信小程序扫码，获取耳机的mac地址 `NAP:UAP:LAP`;
-2. 微信小程序启动蓝牙BLE `peripheral` 模式，创建服务将耳机 mac 地址作为特征值广播;
-3. 蓝牙板卡启动蓝牙BLE `central` 模式[GATT]，连接微信小程序，读取耳机 mac 地址;
-4. 蓝牙板卡通过普通蓝牙 `source` 模式，连接耳机;
+2. 微信小程序连接服务器，将耳机 mac 地址发送给服务器;
+3. 服务器将 mac 地址发送给蓝牙板卡的串口;
+4. 蓝牙板卡运行普通蓝牙 `source` 模式，根据固定地址连接耳机;
 5. 耳机通过麦克风将模拟音频转换成数字音频，发送给蓝牙板卡，蓝牙板卡将数字音频转换成模拟信号输出到音箱;
 
 
-### 技术要点
-1. 微信小程序 `peripheral` 模式的特征值发送
-2. CSR8670芯片的 `source` 模型添加 `GATT` 服务
+### 技术要点 Ver.2
+1. CSR8670的 Uart 通信模型
+2. CSR8670芯片的 `source` 模型状态机改造
 3. CSR8670芯片的 `source` 模型的数模信号转换
 
 
@@ -23,8 +23,35 @@
 2. [蓝牙协议](https://software-dl.ti.com/simplelink/esd/simplelink_cc2640r2_sdk/3.20.00.21/exports/docs/blestack/ble_user_guide/html/ble-stack-3.x/overview.html)
 3. [8670入门笔记](https://www.its203.com/article/ylangeia/103308289)
 
+
+
+
+
+
 ### 工作日志
 
+#### 2021-11-08
+- 将开发板的主模块加装串口调试芯片 USB->TTL
+- 编程 Uart 通讯demo 以及测试
+
+```bash
+# 串口调试芯片焊接端口
+RX/TX/GND
+
+# UART接口硬件配置
+PStool -> UART configuration when under VM control -> 08a0
+
+# 工程开发环境配置
+xIDE -> project -> properties -> transport -> raw
+```
+
+
+#### 2021-11-07
+- 查询 csr8670 串口通讯资料
+- 锁定 uArt && SPP 模型
+
+#### 2021-11-06
+- 修改系统构架，采用串口通讯代替 BLE 模型
 
 #### 2021-11-03
 - 阅读GATT协议逻辑
@@ -70,3 +97,18 @@ bool BdaddrIsSame(const bdaddr *first, const bdaddr *second){
           first->lap == second->lap; 
 }
 ```
+
+
+
+### 逻辑流程 Ver.1
+1. 微信小程序扫码，获取耳机的mac地址 `NAP:UAP:LAP`;
+2. 微信小程序启动蓝牙BLE `peripheral` 模式，创建服务将耳机 mac 地址作为特征值广播;
+3. 蓝牙板卡启动蓝牙BLE `central` 模式[GATT]，连接微信小程序，读取耳机 mac 地址;
+4. 蓝牙板卡通过普通蓝牙 `source` 模式，连接耳机;
+5. 耳机通过麦克风将模拟音频转换成数字音频，发送给蓝牙板卡，蓝牙板卡将数字音频转换成模拟信号输出到音箱;
+
+
+### 技术要点 Ver.1
+1. 微信小程序 `peripheral` 模式的特征值发送
+2. CSR8670芯片的 `source` 模型添加 `GATT` 服务
+3. CSR8670芯片的 `source` 模型的数模信号转换
